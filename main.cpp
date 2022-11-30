@@ -3,31 +3,79 @@
 #include<filesystem>
 #include<fstream>
 #include<vector>
+#include<queue>
+#include<map>
 using namespace std;
 namespace fs = std::filesystem;
 
+// Cau truc chinh
 struct Node {
 	string path;
 	vector<Node*> child;
 };
 
-Node* insert(Node* root, string path, int level) {
-	if (root == NULL) {
-		Node* p = new Node();
-		p->path = path;
-		// Insert sao cho cac path co cung level thi cung mot muc
+Node* newNode(string path){
+	Node* temp = new Node();
+	temp->path = path;
+	temp->child = {NULL};
+	return temp;
+}
+// Sau nay se thay bang Hash Function
+// Day van la do tuyen tinh
+int getIndex(string key, vector<Node*> v){
+	if(v.size() == 1) return -1;
+	else{
+	    for(int i = 1; i < v.size(); i++){
+		    if(v[i]->path == key) return i; //  v[0] dang la null khong co path
+	    }
 	}
-	return root;
+}
+
+
+void insert(Node* &root, queue<string> &q) {
+	// Insert thu muc goc
+	if(root == NULL) {
+		root = newNode(q.front());
+		int index = getIndex(q.front(), root->child);
+		q.pop();
+		root->child.push_back(newNode(q.front()));
+		q.pop();
+		insert(root->child[1], q);
+	}
+	// Insert cac thu muc con
+	while(!q.empty()){
+		int index = getIndex(q.front(), root->child);
+		if (index <= 0 || index >= root->child.size()) {
+			root->child.push_back(newNode(q.front()));
+			int new_index = getIndex(q.front(), root->child);
+			q.pop();
+			insert(root->child[new_index], q);
+		}
+		else {
+			q.pop();
+			insert(root->child[index], q);
+		}
+	}
+	
 }
 
 Node* createTrie(string path) {
 	Node* root = new Node();
 	root = NULL;
+	int i = 0;
 	for (const auto& entry : fs::recursive_directory_iterator(path)) {
-		int i = 0;
+		queue<string> q;
 		for (const auto& part : entry.path()) {
-
+			string part_string = part.generic_string();
+			q.push(part_string);
 		}
+		// Doi voi dong thu 2 tro di thi khong bao gom thu muc goc
+		if (i != 0) {
+			q.pop();
+		}
+		insert(root, q);
+		i++;
+		//break;
 	}
 	return root;
 }
@@ -43,17 +91,10 @@ void printTrie(const string& prefix, const Node* node, bool isEnd) {
 			if(i == node->child.size() - 1) printTrie(prefix + (isEnd ? "|    " : "     "), node->child[i], false);
 			else printTrie(prefix + (isEnd ? "|    " : "     "), node->child[i], true);
 		}
-		// Su dung DFS, de quy de tim duong dan, cay con trai sang phai
-		// Duyet cay khi den node la thi luu node la = key, value = duong dan tuyet doi -> luu vao map 
 	}
 }
 
-Node* newNode(string path){
-	Node* temp = new Node();
-	temp->path = path;
-	temp->child = {NULL};
-	return temp;
-}
+
 
 // TEST
 struct sNode{
@@ -109,15 +150,7 @@ int main() {
 			cout << "Path part: " << i++ << " = " << part << endl;
 		}
 		if(j == 10) break;
-		// .path().filename() : chi lay ra filename
 	}
-	 //List files in all subdirectories
-	//cout << "Subdirectories\n";
-	//string subpath = "D:\\Visual studio code";
-	//for (const auto& entry : filesystem::recursive_directory_iterator(subpath)) {
-	//	cout << entry.path() << endl;
-	//	// Liet ke thu muc va cac file trong thu muc do
-	//}
 
 	//TEST
 	sNode *root = new sNode();
@@ -153,8 +186,14 @@ int main() {
 	nroot->child[4]->child.push_back(newNode("d.txt"));
 	nroot->child[4]->child.push_back(newNode("e.txt"));
 	nroot->child[4]->child.push_back(newNode("f.txt"));
-
 	printTrie("",nroot,false);
+
+
+	// Goi ham chinh
+	cout << "--------------MAIN-------------" << endl;
+	Node* main_root = createTrie("D:\\Test");
+	printTrie("",main_root, false);
+
 
 	return 0;
 }
