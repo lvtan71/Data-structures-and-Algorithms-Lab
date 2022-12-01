@@ -42,6 +42,10 @@ bool HashTable::remove(const string &key, FileData &result, bool return_value) {
   return table_[idx]->remove(key, result, return_value);
 }
 
+bool HashTable::remove(const string &key, FileData &result) {
+  return remove(key, result, true);
+}
+
 bool HashTable::remove(const string &key) {
   FileData temp;
   return remove(key, temp, false);
