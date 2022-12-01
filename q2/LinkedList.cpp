@@ -39,15 +39,36 @@ bool LinkedList::retrieve(const string &key, FileData* &result) const {
   return false;
 }
 
-FileData *LinkedList::remove(const string &key) {
-  if (p_head_ == nullptr) return nullptr;
+bool LinkedList::remove(const string &key, FileData &result, bool return_value) {
+  if (p_head_ == nullptr) return false;
+
   if (p_head_->key == key) {
-    FileData *result = p_head_->p_data;
+    if (return_value) result = *(p_head_->p_data);
+
     Node *temp = p_head_;
     p_head_ = p_head_->p_next;
-
+    
     delete temp->p_data;
+    delete temp;
+
+    return true;
   }
-  
-  return nullptr;
+
+  Node *cur = p_head_;
+  while (cur->p_next != nullptr) {
+    if (cur->p_next->key == key) {
+      if (return_value) result = *(cur->p_next->p_data);
+
+      Node *temp = cur->p_next;
+      cur->p_next = cur->p_next->p_next;
+
+      delete temp->p_data;
+      delete temp;
+
+      return true;
+    }
+
+    cur = cur->p_next;
+  }
+  return false;
 }

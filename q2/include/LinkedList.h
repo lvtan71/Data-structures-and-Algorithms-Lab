@@ -23,7 +23,9 @@ public:
 
   bool addHead(const string &key);
   bool retrieve(const string &key, FileData* &result) const;
-  FileData *remove(const string &key);
+
+  // Remove the first node that match `key`
+  bool remove(const string &key, FileData &result, bool return_value);
 private:
   Node *p_head_;
 };
