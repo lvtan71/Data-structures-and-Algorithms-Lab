@@ -11,7 +11,6 @@ public:
   ~HashTable();
 
 private:
-  int size_;
   vector<LinkedList*> table_;
 
   // Cyclic shift hash function with:

@@ -1,8 +1,7 @@
 #include "include/HashTable.h"
 
 HashTable::HashTable(int size) :
-  size_(size),
-  table_(std::move(vector<LinkedList*>(size)))
+  table_(std::move(vector<LinkedList*>(size, nullptr)))
 {}
 
 // Implement Cyclic shift hash
@@ -14,5 +13,5 @@ int HashTable::hash(string key) {
     int y = hashValue >> b & MAX_INT;
     hashValue ^= (x + key[i] + y) & MAX_INT;
   }
-  return (hashValue & MAX_INT) % size_;
+  return (hashValue & MAX_INT) % table_.size();
 }
