@@ -25,17 +25,8 @@ bool HashTable::insertPath(const string &key, const string &path) {
 
   if (table_[idx] == nullptr) {
     table_[idx] = new LinkedList;
-    table_[idx]->addHead(key, path);
-    return true;
   }
-
-  FileData *temp;
-  // key has already existed
-  if (table_[idx]->retrieve(key, temp)) {
-    return false;
-  }
-
-  table_[idx]->addHead(key, path);
+  table_[idx]->appendPath(key, path);
   return true;
 }
 
