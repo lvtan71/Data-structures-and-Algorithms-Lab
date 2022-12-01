@@ -6,10 +6,10 @@ TDIR=./test
 CC=g++
 CFLAGS=-I $(IDIR) -std=c++17
 
-_DEPS = HashTable.h LinkedList.h
+_DEPS = HashTable.h LinkedList.h utils.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = HashTable.o LinkedList.o
+_OBJ = HashTable.o LinkedList.o utils.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 _TESTS = ll.test ht.test
