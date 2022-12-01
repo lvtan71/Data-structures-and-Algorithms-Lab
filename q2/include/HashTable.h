@@ -10,6 +10,8 @@ public:
   HashTable(int size);
   ~HashTable();
 
+  bool insertPath(const string &key, const string &path);
+
 private:
   vector<LinkedList*> table_;
 
