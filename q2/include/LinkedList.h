@@ -19,7 +19,8 @@ public:
   LinkedList();
   ~LinkedList();
 
-  bool addHead(string key);
+  bool addHead(const string &key);
+  FileData *retrieve(const string &key) const;
 private:
   Node *p_head_;
 };
