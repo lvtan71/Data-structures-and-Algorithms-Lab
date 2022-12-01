@@ -1,6 +1,7 @@
 IDIR=./include
 ODIR=./obj
 BDIR=./bin
+TDIR=./test
 
 CC=g++
 CFLAGS=-I $(IDIR) -std=c++17
@@ -11,15 +12,29 @@ DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 _OBJ = HashTable.o LinkedList.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
+_TESTS = ll.test
+TESTS = $(patsubst %,$(BDIR)/%,$(_TESTS))
+
 $(ODIR)/%.o: %.cpp $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-build: $(OBJ)
-	$(CC) -o $(BDIR)/main main.cpp $^ $(CFLAGS)
+$(BDIR)/main: main.cpp $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
 
-run: $(BDIR)/main
+.PHONY: build
+build: $(BDIR)/main
+
+.PHONY: run
+run: build
 	$(BDIR)/main
+
+$(BDIR)/%.test: $(TDIR)/%.cpp $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
+	$@
+
+.PHONY: test
+test: $(TESTS)
 
 .PHONY: clean
 clean:
-	rm -f $(ODIR)/*.o  $(BDIR)/*
+	rm -f $(ODIR)/* $(BDIR)/*
