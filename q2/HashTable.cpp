@@ -42,21 +42,10 @@ bool HashTable<T>::retrieve(const string &key, T* &result) const {
 }
 
 template<class T>
-bool HashTable<T>::remove(const string &key, T &result, bool return_value) {
+bool HashTable<T>::remove(const string &key) {
   int idx = hash(key);
   if (table_[idx] == nullptr) return false;
-  return table_[idx]->remove(key, result, return_value);
-}
-
-template<class T>
-bool HashTable<T>::remove(const string &key, T &result) {
-  return remove(key, result, true);
-}
-
-template<class T>
-bool HashTable<T>::remove(const string &key) {
-  FileData temp;
-  return remove(key, temp, false);
+  return table_[idx]->remove(key);
 }
 
 template class HashTable<FileData>;

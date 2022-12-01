@@ -17,7 +17,7 @@ public:
   bool retrieve(const string &key, T* &result) const;
 
   // Remove the first node that match `key`
-  bool remove(const string &key, T &result, bool return_value);
+  bool remove(const string &key);
 private:
   struct Node {
     string key;

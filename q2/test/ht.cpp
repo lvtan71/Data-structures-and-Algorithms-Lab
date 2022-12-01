@@ -33,17 +33,10 @@ void test_remove_path() {
   ht.insertPath("a", "xyz");
   ht.insertPath("b", "123");
 
-  FileData *temp, result;
-  ht.remove("a", result);
-
-  assert(result.abs_path[0] == "abc");
-  assert(result.abs_path[1] == "xyz");
-
+  FileData *temp;
+  assert(ht.remove("a"));
   assert(!ht.retrieve("a", temp));
   assert(ht.retrieve("b", temp));
-
-  ht.remove("b");
-  assert(!ht.retrieve("b", temp));
   
   cout << "Passed" << endl;
 }

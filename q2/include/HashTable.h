@@ -14,13 +14,11 @@ public:
 
   bool insertPath(const string &key, const string &path);
   bool retrieve(const string &key, T* &result) const;
-  bool remove(const string &key, T &result);
   bool remove(const string &key);
 
 private:
   vector<LinkedList*> table_;
 
-  bool remove(const string &key, T &result, bool return_value);
   // Cyclic shift hash function with:
   // + hash_value = 1,315,423,911
   // + a = 5
