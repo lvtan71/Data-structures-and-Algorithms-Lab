@@ -75,7 +75,7 @@ void test_integration_1() {
   assert(result.abs_path.size() == 2);
   assert(result.abs_path.back() == "ok");
 
-  cout << "Passed";
+  cout << "Passed" << endl;
 }
 
 int main() {

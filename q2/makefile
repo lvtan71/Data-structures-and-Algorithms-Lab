@@ -12,7 +12,7 @@ DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 _OBJ = HashTable.o LinkedList.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-_TESTS = ll.test
+_TESTS = ll.test ht.test
 TESTS = $(patsubst %,$(BDIR)/%,$(_TESTS))
 
 $(ODIR)/%.o: %.cpp $(DEPS)
