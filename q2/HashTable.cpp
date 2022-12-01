@@ -44,3 +44,14 @@ bool HashTable::retrieve(const string &key, FileData* &result) const {
   if (table_[idx] == nullptr) return false;
   return table_[idx]->retrieve(key, result);
 }
+
+bool HashTable::remove(const string &key, FileData &result, bool return_value) {
+  int idx = hash(key);
+  if (table_[idx] == nullptr) return false;
+  return table_[idx]->remove(key, result, return_value);
+}
+
+bool HashTable::remove(const string &key) {
+  FileData temp;
+  return remove(key, temp, false);
+}

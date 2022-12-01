@@ -12,6 +12,8 @@ public:
 
   bool insertPath(const string &key, const string &path);
   bool retrieve(const string &key, FileData* &result) const;
+  bool remove(const string &key, FileData &result, bool return_value);
+  bool remove(const string &key);
 
 private:
   vector<LinkedList*> table_;
