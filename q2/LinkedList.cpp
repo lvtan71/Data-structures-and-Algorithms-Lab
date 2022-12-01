@@ -26,6 +26,11 @@ bool LinkedList::addHead(const string &key) {
   p_head_ = new_head;
   return true;
 }
+bool LinkedList::addHead(const string &key, const string &path) {
+  addHead(key);
+  (*p_head_->p_data).abs_path.emplace_back(path);
+  return true;
+}
 
 bool LinkedList::retrieve(const string &key, FileData* &result) const {
   Node *cur = p_head_;
