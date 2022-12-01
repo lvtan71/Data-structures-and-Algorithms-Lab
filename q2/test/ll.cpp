@@ -19,6 +19,22 @@ void test_add_and_retrieve() {
   cout << "Passed" << endl;
 }
 
+void test_add_and_retrieve_2() {
+  cout << "[Test] Add using addHead method overloaded with 3 parameters - "; 
+
+  LinkedList L;
+  L.addHead("a");
+  L.addHead("b", "xyz");
+  L.addHead("c");
+
+  FileData *result;
+  assert(L.retrieve("b", result));
+  assert(result->abs_path.size() == 1);
+  assert(result->abs_path[0] == "xyz");
+
+  cout << "Passed" << endl;
+}
+
 void test_remove() {
   LinkedList L;
   L.addHead("a");
@@ -64,6 +80,7 @@ void test_integration_1() {
 
 int main() {
   test_add_and_retrieve();
+  test_add_and_retrieve_2();
   test_remove();
   test_integration_1();
   return 0;
