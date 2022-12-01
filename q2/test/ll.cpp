@@ -5,6 +5,7 @@
 using namespace std;
 
 void test_add_and_retrieve() {
+  typedef LinkedList<FileData> LinkedList;
   cout << "[Test] Add and retrieve node in linked list - ";
 
   LinkedList L;
@@ -22,6 +23,7 @@ void test_add_and_retrieve() {
 }
 
 void test_retrieve_not_exist_key() {
+  typedef LinkedList<FileData> LinkedList;
   cout << "[Test] Retrieve key that is not exist - ";
 
   LinkedList L;
@@ -36,6 +38,7 @@ void test_retrieve_not_exist_key() {
 }
 
 void test_remove() {
+  typedef LinkedList<FileData> LinkedList;
   LinkedList L;
   L.appendPath("a", "1");
   L.appendPath("b", "2");
@@ -60,6 +63,7 @@ void test_remove() {
 }
 
 void test_integration_1() {
+  typedef LinkedList<FileData> LinkedList;
   LinkedList L;
   L.appendPath("a", "1");
   L.appendPath("b", "2");

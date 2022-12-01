@@ -5,6 +5,7 @@
 using namespace std;
 
 void test_insert_and_retrieve_path() {
+  typedef HashTable<FileData> HashTable;
   cout << "[Test] Insert and retrieve path in HashTable - "; 
   HashTable ht(20);
   ht.insertPath("a", "abc");
@@ -24,6 +25,7 @@ void test_insert_and_retrieve_path() {
 }
 
 void test_remove_path() {
+  typedef HashTable<FileData> HashTable;
   cout << "[Test] Remove path in HashTable - "; 
 
   HashTable ht(20);
