@@ -18,17 +18,25 @@ LinkedList::~LinkedList() {
   }
 }
 
-bool LinkedList::addHead(const string &key) {
+bool LinkedList::addHead(const string &key, const string &path) {
   Node *new_head = new Node;
+
   new_head->key = key;
+
   new_head->p_data = new FileData;
+  new_head->p_data->abs_path.emplace_back(path);
+
   new_head->p_next = p_head_;
+
   p_head_ = new_head;
   return true;
 }
-bool LinkedList::addHead(const string &key, const string &path) {
-  addHead(key);
-  (*p_head_->p_data).abs_path.emplace_back(path);
+
+bool LinkedList::appendPath(const string &key, const string &path) {
+  FileData *data;
+  if (retrieve(key, data)) data->abs_path.emplace_back(path);
+  else addHead(key, path);
+
   return true;
 }
 
