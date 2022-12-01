@@ -11,6 +11,7 @@ public:
   ~HashTable();
 
   bool insertPath(const string &key, const string &path);
+  bool retrieve(const string &key, FileData* &result) const;
 
 private:
   vector<LinkedList*> table_;
@@ -19,7 +20,7 @@ private:
   // + hash_value = 1,315,423,911
   // + a = 5
   // + b = 2
-  int hash(string key);
+  int hash(string key) const;
 };
 
 

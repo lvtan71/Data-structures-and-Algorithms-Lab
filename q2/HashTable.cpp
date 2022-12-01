@@ -9,7 +9,7 @@ HashTable::~HashTable() {
 }
 
 // Implement Cyclic shift hash
-int HashTable::hash(string key) {
+int HashTable::hash(string key) const {
   int hashValue = 1315423911;
   int a = 5, b = 2;
   for (int i = 0; i < key.size(); i++) {
@@ -37,4 +37,10 @@ bool HashTable::insertPath(const string &key, const string &path) {
 
   table_[idx]->addHead(key, path);
   return true;
+}
+
+bool HashTable::retrieve(const string &key, FileData* &result) const {
+  int idx = hash(key);
+  if (table_[idx] == nullptr) return false;
+  return table_[idx]->retrieve(key, result);
 }
