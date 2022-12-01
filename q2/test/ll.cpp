@@ -12,8 +12,9 @@ void test_add_and_retrieve() {
   L.addHead("b");
   L.addHead("c");
 
-  assert(L.retrieve("b") != nullptr);
-  assert(L.retrieve("d") == nullptr);
+  FileData *result;
+  assert(L.retrieve("b", result));
+  assert(!L.retrieve("d", result));
 
   cout << "Passed!" << endl;
 }

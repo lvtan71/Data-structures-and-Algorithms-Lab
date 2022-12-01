@@ -19,8 +19,11 @@ public:
   LinkedList();
   ~LinkedList();
 
+  bool isEmpty() const;
+
   bool addHead(const string &key);
-  FileData *retrieve(const string &key) const;
+  bool retrieve(const string &key, FileData* &result) const;
+  FileData *remove(const string &key);
 private:
   Node *p_head_;
 };
