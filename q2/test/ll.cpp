@@ -8,39 +8,39 @@ void test_add_and_retrieve() {
   cout << "[Test] Add and retrieve node in linked list - ";
 
   LinkedList L;
-  L.addHead("a");
-  L.addHead("b");
-  L.addHead("c");
+  L.appendPath("a", "1");
+  L.appendPath("b", "2");
+  L.appendPath("c", "3");
 
   FileData *result;
   assert(L.retrieve("b", result));
-  assert(!L.retrieve("d", result));
+
+  assert(result->abs_path.size() == 1);
+  assert(result->abs_path[0] == "2");
 
   cout << "Passed" << endl;
 }
 
-void test_add_and_retrieve_2() {
-  cout << "[Test] Add using addHead method overloaded with 3 parameters - "; 
+void test_retrieve_not_exist_key() {
+  cout << "[Test] Retrieve key that is not exist - ";
 
   LinkedList L;
-  L.addHead("a");
-  L.addHead("b", "xyz");
-  L.addHead("c");
+  L.appendPath("a", "1");
+  L.appendPath("b", "2");
+  L.appendPath("c", "3");
 
   FileData *result;
-  assert(L.retrieve("b", result));
-  assert(result->abs_path.size() == 1);
-  assert(result->abs_path[0] == "xyz");
+  assert(!L.retrieve("d", result));
 
   cout << "Passed" << endl;
 }
 
 void test_remove() {
   LinkedList L;
-  L.addHead("a");
-  L.addHead("b");
-  L.addHead("c");
-  L.addHead("d");
+  L.appendPath("a", "1");
+  L.appendPath("b", "2");
+  L.appendPath("c", "3");
+  L.appendPath("d", "4");
   FileData result;
 
   cout << "[Test] Remove head in linked list - ";
@@ -61,8 +61,8 @@ void test_remove() {
 
 void test_integration_1() {
   LinkedList L;
-  L.addHead("a");
-  L.addHead("b");
+  L.appendPath("a", "1");
+  L.appendPath("b", "2");
 
   cout << "[Test] Retrieve node -> Add Data -> Remove Node - ";
 
@@ -72,15 +72,15 @@ void test_integration_1() {
   p_result->abs_path.push_back("ok");
 
   assert(L.remove("b", result, true));
-  assert(result.abs_path.size() == 1);
-  assert(result.abs_path[0] == "ok");
+  assert(result.abs_path.size() == 2);
+  assert(result.abs_path.back() == "ok");
 
   cout << "Passed";
 }
 
 int main() {
   test_add_and_retrieve();
-  test_add_and_retrieve_2();
+  test_retrieve_not_exist_key();
   test_remove();
   test_integration_1();
   return 0;
