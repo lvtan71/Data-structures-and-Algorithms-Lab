@@ -26,6 +26,18 @@ void test_insert_and_retrieve_path() {
   cout << "Passed" << endl;
 }
 
+void test_insert_invalid_path() {
+  typedef HashTable<FileData> HashTable;
+  cout << "[Test] Insert in valid path to HashTable - ";
+  HashTable ht(20);
+
+  ht.insertPath("a", "xyz");
+  FileData *result;
+  assert(!ht.retrieve("a", result));
+
+  cout << "Passed" << endl;
+}
+
 void test_remove_path() {
   typedef HashTable<FileData> HashTable;
   cout << "[Test] Remove path in HashTable - "; 
@@ -43,8 +55,33 @@ void test_remove_path() {
   cout << "Passed" << endl;
 }
 
+
+void test_insert_and_retrieve_hash_table_folder_data() {
+  cout << "[Test] Insert and retrieve in HashTable with FolderData - ";
+  HashTable<FolderData> ht(20);
+
+  assert(ht.insertPath("d:\\", "d:\\a\\b"));
+
+  assert(ht.insertPath("d:\\", "d:\\a\\c\\b"));
+
+  FolderData *res1;
+  assert(ht.retrieve("d:\\", res1));
+
+  FileData *res2;
+  assert(res1->abs_path->retrieve("b", res2));
+
+  assert(res2->abs_path.size() == 2);
+  assert(res2->abs_path[0] == "d:\\a\\b");
+  assert(res2->abs_path[1] == "d:\\a\\c\\b");
+
+  cout << "Passed" << endl;
+}
+
 int main() {
   test_insert_and_retrieve_path();
+  test_insert_invalid_path();
   test_remove_path();
+
+  test_insert_and_retrieve_hash_table_folder_data();
   return 0;
 }
