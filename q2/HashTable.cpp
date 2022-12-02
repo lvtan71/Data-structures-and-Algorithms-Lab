@@ -1,6 +1,7 @@
 #include "include/Data.h"
 #include "include/LinkedList.h"
 #include "include/HashTable.h"
+#include "include/utils.h"
 
 template<class T>
 HashTable<T>::HashTable(int size) :
@@ -27,6 +28,9 @@ int HashTable<T>::hash(string key) const {
 
 template<class T>
 bool HashTable<T>::insertPath(const string &key, const string &path) {
+  string temp;
+  if (utils::get_path_target(path, temp) != utils::kFolderNFile) return false;
+
   int idx = hash(key);   
 
   if (table_[idx] == nullptr) {
