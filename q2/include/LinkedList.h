@@ -12,6 +12,7 @@ public:
 
   bool isEmpty() const;
   
+  // Return true if a new node is added, otherwise return false
   bool appendPath(const string &key, const string &path);
   bool retrieve(const string &key, T* &result) const;
 

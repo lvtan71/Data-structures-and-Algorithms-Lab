@@ -41,9 +41,11 @@ bool LinkedList<T>::addHead(const string &key, const string &path) {
 template<class T>
 bool LinkedList<T>::appendPath(const string &key, const string &path) {
   T *data;
-  if (retrieve(key, data)) data->append(path);
-  else addHead(key, path);
-
+  if (retrieve(key, data)) {
+    data->append(path);
+    return false;
+  }
+  addHead(key, path);
   return true;
 }
 
