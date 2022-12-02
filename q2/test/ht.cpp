@@ -92,6 +92,31 @@ void test_hash_table_keys() {
   cout << "Passed" << endl;
 }
 
+void test_remove_hash_table_folder_data() {
+  cout << "[Test] Remove in HashTable with FolderData - ";
+  HashTable<FolderData> ht(20);
+
+  assert(ht.insertPath("d:\\", "d:\\a\\b"));
+  assert(ht.insertPath("e:\\", "d:\\a"));
+  assert(ht.insertPath("e:\\", "d:\\c"));
+
+  assert(ht.remove("e:\\"));
+
+  FolderData *res1;
+  assert(!ht.retrieve("e:\\", res1));
+  assert(!ht.remove("e:\\"));
+
+  assert(ht.retrieve("d:\\", res1));
+
+  FileData *res2;
+  assert(res1->abs_path->retrieve("b", res2));
+
+  assert(res2->abs_path.size() == 1);
+  assert(res2->abs_path[0] == "d:\\a\\b");
+
+  cout << "Passed" << endl;
+}
+
 int main() {
   test_insert_and_retrieve_path();
   test_insert_invalid_path();
@@ -99,5 +124,6 @@ int main() {
 
   test_insert_and_retrieve_hash_table_folder_data();
   test_hash_table_keys();
+  test_remove_hash_table_folder_data();
   return 0;
 }
