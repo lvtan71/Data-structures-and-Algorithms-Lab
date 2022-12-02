@@ -29,7 +29,7 @@ private:
   // + hash_value = 1,315,423,911
   // + a = 5
   // + b = 2
-  int hash(string key) const;
+  int hash(const string &key) const;
 };
 
 

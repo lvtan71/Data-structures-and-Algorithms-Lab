@@ -21,7 +21,7 @@ HashTable<T>::~HashTable() {
 
 // Implement Cyclic shift hash
 template<class T>
-int HashTable<T>::hash(string key) const {
+int HashTable<T>::hash(const string &key) const {
   int hashValue = 1315423911;
   int a = 5, b = 2;
   for (int i = 0; i < (int)key.size(); i++) {
