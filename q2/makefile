@@ -6,13 +6,13 @@ TDIR=./test
 CC=g++
 CFLAGS=-I $(IDIR) -Wall -Wextra -std=c++17
 
-_DEPS = HashTable.h LinkedList.h Data.h
+_DEPS = HashTable.h LinkedList.h Data.h utils.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = HashTable.o LinkedList.o Data.o
+_OBJ = HashTable.o LinkedList.o Data.o utils.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-_TESTS = ll.test ht.test
+_TESTS = ll.test ht.test check_valid_path.test
 TESTS = $(patsubst %,$(BDIR)/%,$(_TESTS))
 
 $(ODIR)/%.o: %.cpp $(DEPS)
