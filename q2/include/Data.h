@@ -3,6 +3,7 @@
 #include <string>
 
 using namespace std;
+const int MAX_FILE_HT_SIZE = 500;
 
 // Forward declaration
 template <class T>
@@ -39,7 +40,10 @@ struct FileData : public BaseData {
  *  123: ["d:\a\123", "d:\b\123"]
  */
 struct FolderData : public BaseData {
+  // Lazy Initialization
+  // abs_path only created when a path is added
   FolderData() = default;
+
   FolderData(int size);
   ~FolderData();
   
