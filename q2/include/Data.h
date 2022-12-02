@@ -42,7 +42,7 @@ struct FileData : public BaseData {
 struct FolderData : public BaseData {
   // Lazy Initialization
   // abs_path only created when a path is added
-  FolderData() = default;
+  FolderData();
 
   FolderData(int size);
   ~FolderData();

@@ -5,6 +5,9 @@
 void FileData::append(const string &path) {
   abs_path.emplace_back(path);
 }
+FolderData::FolderData() : 
+  abs_path(nullptr) 
+{}
 
 FolderData::FolderData(int size) {
   abs_path = new HashTable<FileData>(size);
