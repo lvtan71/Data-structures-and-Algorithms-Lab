@@ -21,9 +21,9 @@ public:
   bool retrieve(const string &key, T* &result) const;
   bool remove(const string &key);
 
+  vector<string> keys;
 private:
   vector<LinkedList*> table_;
-  vector<string> keys_;
 
   // Cyclic shift hash function with:
   // + hash_value = 1,315,423,911

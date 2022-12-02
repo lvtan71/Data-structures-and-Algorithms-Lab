@@ -11,7 +11,7 @@ HashTable<T>::HashTable(int size) :
 template<class T>
 HashTable<T>::~HashTable() {
   int idx;
-  for (auto &key : keys_) {
+  for (auto &key : keys) {
     idx = hash(key);
     delete table_[idx];
     // Two keys may have the same idx in table_
@@ -43,7 +43,7 @@ bool HashTable<T>::insertPath(const string &key, const string &path) {
     table_[idx] = new LinkedList;
   }
 
-  if (table_[idx]->appendPath(key, path)) keys_.push_back(key);
+  if (table_[idx]->appendPath(key, path)) keys.push_back(key);
 
   return true;
 }
