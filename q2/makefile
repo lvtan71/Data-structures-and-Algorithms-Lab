@@ -4,7 +4,7 @@ BDIR=./bin
 TDIR=./test
 
 CC=g++
-CFLAGS=-I $(IDIR) -std=c++17
+CFLAGS=-I $(IDIR) -Wall -Wextra -std=c++17
 
 _DEPS = HashTable.h LinkedList.h utils.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
