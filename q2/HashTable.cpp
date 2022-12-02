@@ -31,6 +31,8 @@ bool HashTable<T>::insertPath(const string &key, const string &path) {
   string temp;
   if (utils::get_path_target(path, temp) != utils::kFolderNFile) return false;
 
+  keys_.push_back(key);
+
   int idx = hash(key);   
 
   if (table_[idx] == nullptr) {
