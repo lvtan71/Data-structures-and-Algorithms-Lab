@@ -1,4 +1,7 @@
+#include "include/Data.h"
+#include "include/LinkedList.h"
 #include "include/HashTable.h"
+#include "include/utils.h"
 
 template<class T>
 HashTable<T>::HashTable(int size) :
@@ -7,7 +10,13 @@ HashTable<T>::HashTable(int size) :
 
 template<class T>
 HashTable<T>::~HashTable() {
-  for (auto &l : table_) delete l;
+  int idx;
+  for (auto &key : keys) {
+    idx = hash(key);
+    delete table_[idx];
+    // Two keys may have the same idx in table_
+    table_[idx] = nullptr;
+  }
 }
 
 // Implement Cyclic shift hash
@@ -25,12 +34,17 @@ int HashTable<T>::hash(string key) const {
 
 template<class T>
 bool HashTable<T>::insertPath(const string &key, const string &path) {
+  string temp;
+  if (utils::get_path_target(path, temp) != utils::kFolderNFile) return false;
+
   int idx = hash(key);   
 
   if (table_[idx] == nullptr) {
     table_[idx] = new LinkedList;
   }
-  table_[idx]->appendPath(key, path);
+
+  if (table_[idx]->appendPath(key, path)) keys.push_back(key);
+
   return true;
 }
 
@@ -49,3 +63,4 @@ bool HashTable<T>::remove(const string &key) {
 }
 
 template class HashTable<FileData>;
+template class HashTable<FolderData>;

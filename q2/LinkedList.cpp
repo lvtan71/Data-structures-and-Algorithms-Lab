@@ -1,4 +1,5 @@
 #include "include/LinkedList.h"
+#include "include/Data.h"
 
 template<class T>
 LinkedList<T>::LinkedList() :
@@ -28,7 +29,8 @@ bool LinkedList<T>::addHead(const string &key, const string &path) {
   new_head->key = key;
 
   new_head->p_data = new T;
-  new_head->p_data->append(key, path);
+
+  new_head->p_data->append(path);
 
   new_head->p_next = p_head_;
 
@@ -39,9 +41,11 @@ bool LinkedList<T>::addHead(const string &key, const string &path) {
 template<class T>
 bool LinkedList<T>::appendPath(const string &key, const string &path) {
   T *data;
-  if (retrieve(key, data)) data->append(key, path);
-  else addHead(key, path);
-
+  if (retrieve(key, data)) {
+    data->append(path);
+    return false;
+  }
+  addHead(key, path);
   return true;
 }
 
@@ -92,3 +96,4 @@ bool LinkedList<T>::remove(const string &key) {
 }
 
 template class LinkedList<FileData>;
+template class LinkedList<FolderData>;

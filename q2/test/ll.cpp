@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cassert>
+#include "../include/Data.h"
 #include "../include/LinkedList.h"
 
 using namespace std;
