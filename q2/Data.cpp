@@ -5,6 +5,14 @@
 void FileData::append(const string &path) {
   abs_path.emplace_back(path);
 }
+
+ostream& operator<<(ostream &stream, const FileData &rhs) {
+  for(const auto &path : rhs.abs_path) {
+    stream << path << endl;
+  }
+  return stream;
+}
+
 FolderData::FolderData() : 
   abs_path(nullptr) 
 {}

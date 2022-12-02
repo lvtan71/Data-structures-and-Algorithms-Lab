@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <vector>
 #include <string>
 
@@ -29,6 +30,8 @@ struct FileData : public BaseData {
   void append(const string &path);
 
   vector<string> abs_path;
+
+  friend ostream& operator<<(ostream &stream, const FileData &rhs);
 };
 
 /* 
