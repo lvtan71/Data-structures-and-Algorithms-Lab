@@ -28,6 +28,10 @@ bool utils::check_path_format(const string &path) {
 
   return path.back() != '\\';
 }
+bool utils::check_valid_file(const string &file) {
+  for (const auto &ch : file) if (ch == '\\' || ch == ':') return false;
+  return true; 
+}
 
 utils::PathType utils::get_path_target(const string &path, string &result) {
   if (!utils::check_path_format(path)) return utils::kUndefined;
