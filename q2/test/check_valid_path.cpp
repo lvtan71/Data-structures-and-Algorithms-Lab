@@ -15,7 +15,9 @@ void test_check_valid_path() {
   assert(!utils::check_path_format("d:\\\\"));
   assert(!utils::check_path_format("d\\\\"));
   assert(!utils::check_path_format("d:\\abc\\xy:z"));
-  assert(!utils::check_path_format("d:\\abc\\xy:z"));
+
+  assert(!utils::check_path_format(":\\abc\\xy:z"));
+  assert(!utils::check_path_format("\\abc\\xy:z"));
 
   cout << "Passed" << endl;
 }
