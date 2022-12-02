@@ -28,3 +28,18 @@ bool utils::check_path_format(const string &path) {
 
   return path.back() != '\\';
 }
+
+utils::PathType utils::get_path_target(const string &path, string &result) {
+  if (!utils::check_path_format(path)) return utils::kUndefined;
+  // Disk
+  int length = path.size();
+  if (path.back() == '\\') {
+    result = path.substr(0, length-2);
+    return utils::kDisk;
+  }
+  
+  while (path[--length] != '\\');
+
+  result = path.substr(length+1);
+  return utils::kFolderNFile;
+}

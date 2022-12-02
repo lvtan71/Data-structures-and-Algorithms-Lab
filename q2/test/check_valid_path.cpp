@@ -22,7 +22,22 @@ void test_check_valid_path() {
   cout << "Passed" << endl;
 }
 
+void test_get_target() {
+  cout << "[Test] Get target in path - ";
+  string result;
+  
+  assert(utils::get_path_target("d:\\", result) == utils::kDisk);
+  assert(result == "d");
+
+  assert(utils::get_path_target("d:\\abc", result) == utils::kFolderNFile);
+  assert(result == "abc");
+
+  assert(utils::get_path_target("d:\\abc\\", result) == utils::kUndefined);
+  cout << "Passed" << endl;
+}
+
 int main() {
   test_check_valid_path();
+  test_get_target();
   return 0;
 }
