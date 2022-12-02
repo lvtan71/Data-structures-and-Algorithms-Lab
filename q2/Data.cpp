@@ -24,3 +24,7 @@ void FolderData::append(const string &path) {
     abs_path->insertPath(key, path);
   } 
 }
+
+void FolderData::retrieve(const string &key, FileData* &result) {
+  abs_path->retrieve(key, result);
+}
