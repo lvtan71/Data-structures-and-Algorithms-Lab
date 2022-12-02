@@ -4,12 +4,12 @@ BDIR=./bin
 TDIR=./test
 
 CC=g++
-CFLAGS=-I $(IDIR) -std=c++17
+CFLAGS=-I $(IDIR) -Wall -Wextra -std=c++17
 
-_DEPS = HashTable.h LinkedList.h
+_DEPS = HashTable.h LinkedList.h Data.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = HashTable.o LinkedList.o
+_OBJ = HashTable.o LinkedList.o Data.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 _TESTS = ll.test ht.test

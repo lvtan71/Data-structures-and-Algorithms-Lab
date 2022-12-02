@@ -1,18 +1,21 @@
 #include "include/HashTable.h"
 
-HashTable::HashTable(int size) :
+template<class T>
+HashTable<T>::HashTable(int size) :
   table_(std::move(vector<LinkedList*>(size, nullptr)))
 {}
 
-HashTable::~HashTable() {
+template<class T>
+HashTable<T>::~HashTable() {
   for (auto &l : table_) delete l;
 }
 
 // Implement Cyclic shift hash
-int HashTable::hash(string key) const {
+template<class T>
+int HashTable<T>::hash(string key) const {
   int hashValue = 1315423911;
   int a = 5, b = 2;
-  for (int i = 0; i < key.size(); i++) {
+  for (int i = 0; i < (int)key.size(); i++) {
     int x = hashValue << a & MAX_INT;
     int y = hashValue >> b & MAX_INT;
     hashValue ^= (x + key[i] + y) & MAX_INT;
@@ -20,7 +23,8 @@ int HashTable::hash(string key) const {
   return (hashValue & MAX_INT) % table_.size();
 }
 
-bool HashTable::insertPath(const string &key, const string &path) {
+template<class T>
+bool HashTable<T>::insertPath(const string &key, const string &path) {
   int idx = hash(key);   
 
   if (table_[idx] == nullptr) {
@@ -30,23 +34,18 @@ bool HashTable::insertPath(const string &key, const string &path) {
   return true;
 }
 
-bool HashTable::retrieve(const string &key, FileData* &result) const {
+template<class T>
+bool HashTable<T>::retrieve(const string &key, T* &result) const {
   int idx = hash(key);
   if (table_[idx] == nullptr) return false;
   return table_[idx]->retrieve(key, result);
 }
 
-bool HashTable::remove(const string &key, FileData &result, bool return_value) {
+template<class T>
+bool HashTable<T>::remove(const string &key) {
   int idx = hash(key);
   if (table_[idx] == nullptr) return false;
-  return table_[idx]->remove(key, result, return_value);
+  return table_[idx]->remove(key);
 }
 
-bool HashTable::remove(const string &key, FileData &result) {
-  return remove(key, result, true);
-}
-
-bool HashTable::remove(const string &key) {
-  FileData temp;
-  return remove(key, temp, false);
-}
+template class HashTable<FileData>;

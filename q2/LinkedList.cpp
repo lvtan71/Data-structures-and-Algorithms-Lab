@@ -1,14 +1,17 @@
 #include "include/LinkedList.h"
 
-LinkedList::LinkedList() :
+template<class T>
+LinkedList<T>::LinkedList() :
   p_head_(nullptr)
 {}
 
-bool LinkedList::isEmpty() const {
+template<class T>
+bool LinkedList<T>::isEmpty() const {
   return p_head_ == nullptr;
 }
 
-LinkedList::~LinkedList() {
+template<class T>
+LinkedList<T>::~LinkedList() {
   Node *cur = p_head_, *prev;
   while (cur != nullptr) {
     prev = cur;
@@ -18,13 +21,14 @@ LinkedList::~LinkedList() {
   }
 }
 
-bool LinkedList::addHead(const string &key, const string &path) {
+template<class T>
+bool LinkedList<T>::addHead(const string &key, const string &path) {
   Node *new_head = new Node;
 
   new_head->key = key;
 
-  new_head->p_data = new FileData;
-  new_head->p_data->abs_path.emplace_back(path);
+  new_head->p_data = new T;
+  new_head->p_data->append(key, path);
 
   new_head->p_next = p_head_;
 
@@ -32,15 +36,17 @@ bool LinkedList::addHead(const string &key, const string &path) {
   return true;
 }
 
-bool LinkedList::appendPath(const string &key, const string &path) {
-  FileData *data;
-  if (retrieve(key, data)) data->abs_path.emplace_back(path);
+template<class T>
+bool LinkedList<T>::appendPath(const string &key, const string &path) {
+  T *data;
+  if (retrieve(key, data)) data->append(key, path);
   else addHead(key, path);
 
   return true;
 }
 
-bool LinkedList::retrieve(const string &key, FileData* &result) const {
+template<class T>
+bool LinkedList<T>::retrieve(const string &key, T* &result) const {
   Node *cur = p_head_;
   while (cur != nullptr) {
     if (cur->key == key) {
@@ -52,11 +58,11 @@ bool LinkedList::retrieve(const string &key, FileData* &result) const {
   return false;
 }
 
-bool LinkedList::remove(const string &key, FileData &result, bool return_value) {
+template<class T>
+bool LinkedList<T>::remove(const string &key) {
   if (p_head_ == nullptr) return false;
 
   if (p_head_->key == key) {
-    if (return_value) result = *(p_head_->p_data);
 
     Node *temp = p_head_;
     p_head_ = p_head_->p_next;
@@ -70,7 +76,6 @@ bool LinkedList::remove(const string &key, FileData &result, bool return_value) 
   Node *cur = p_head_;
   while (cur->p_next != nullptr) {
     if (cur->p_next->key == key) {
-      if (return_value) result = *(cur->p_next->p_data);
 
       Node *temp = cur->p_next;
       cur->p_next = cur->p_next->p_next;
@@ -85,3 +90,5 @@ bool LinkedList::remove(const string &key, FileData &result, bool return_value) 
   }
   return false;
 }
+
+template class LinkedList<FileData>;
