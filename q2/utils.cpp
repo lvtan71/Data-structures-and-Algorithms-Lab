@@ -13,12 +13,12 @@ void utils::print_path_format() {
 
 bool utils::check_path_format(string path) {
   int i;
-  for (i=0; i < path.size(); i++) {
+  for (i=0; i < (int)path.size(); i++) {
     if (path[i] == '\\') return false;
     if (path[i] == ':') break;
   }
   i++;
-  if (i >= path.size() || path[i] != '\\') return false;
+  if (i >= (int)path.size() || path[i] != '\\') return false;
   if (i == (int)path.size() - 1) return true;
 
   for (; i < (int)path.size() - 1; i++) {
