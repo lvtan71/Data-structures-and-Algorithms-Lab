@@ -51,3 +51,4 @@ bool HashTable<T>::remove(const string &key) {
 }
 
 template class HashTable<FileData>;
+template class HashTable<FolderData>;

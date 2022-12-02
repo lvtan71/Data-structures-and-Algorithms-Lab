@@ -94,3 +94,4 @@ bool LinkedList<T>::remove(const string &key) {
 }
 
 template class LinkedList<FileData>;
+template class LinkedList<FolderData>;
