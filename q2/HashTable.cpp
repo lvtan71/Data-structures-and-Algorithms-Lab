@@ -10,7 +10,13 @@ HashTable<T>::HashTable(int size) :
 
 template<class T>
 HashTable<T>::~HashTable() {
-  for (auto &l : table_) delete l;
+  int idx;
+  for (auto &key : keys_) {
+    idx = hash(key);
+    delete table_[idx];
+    // Two keys may have the same idx in table_
+    table_[idx] = nullptr;
+  }
 }
 
 // Implement Cyclic shift hash
