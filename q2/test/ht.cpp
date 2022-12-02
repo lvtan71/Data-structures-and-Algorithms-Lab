@@ -77,11 +77,27 @@ void test_insert_and_retrieve_hash_table_folder_data() {
   cout << "Passed" << endl;
 }
 
+void test_hash_table_keys() {
+  cout << "[Test] HashTable keys - ";
+  HashTable<FolderData> ht(20);
+
+  assert(ht.insertPath("d:\\", "d:\\a\\b"));
+  assert(ht.insertPath("e:\\", "d:\\a"));
+  assert(ht.insertPath("e:\\", "d:\\c"));
+
+  assert(ht.keys.size() == 2);
+  assert(ht.keys[0] == "d:\\");
+  assert(ht.keys[1] == "e:\\");
+
+  cout << "Passed" << endl;
+}
+
 int main() {
   test_insert_and_retrieve_path();
   test_insert_invalid_path();
   test_remove_path();
 
   test_insert_and_retrieve_hash_table_folder_data();
+  test_hash_table_keys();
   return 0;
 }
