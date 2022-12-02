@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cassert>
+#include "../include/Data.h"
+#include "../include/LinkedList.h"
 #include "../include/HashTable.h"
 
 using namespace std;

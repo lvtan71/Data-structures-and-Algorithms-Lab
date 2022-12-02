@@ -1,3 +1,5 @@
+#include "include/Data.h"
+#include "include/LinkedList.h"
 #include "include/HashTable.h"
 
 template<class T>

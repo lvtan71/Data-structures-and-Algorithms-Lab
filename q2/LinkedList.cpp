@@ -1,4 +1,5 @@
 #include "include/LinkedList.h"
+#include "include/Data.h"
 
 template<class T>
 LinkedList<T>::LinkedList() :

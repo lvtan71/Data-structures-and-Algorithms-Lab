@@ -1,5 +1,10 @@
 #pragma once
-#include "LinkedList.h"
+#include <vector>
+#include <string>
+
+// Forward declaration
+template<class T>
+class LinkedList;
 
 using namespace std;
 const int MAX_INT = 0x7FFFFFFF;
