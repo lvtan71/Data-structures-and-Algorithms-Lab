@@ -23,7 +23,7 @@ void utils::print_path_format() {
   cout << "Name of disk, folder and file is not empty and only contains: " << endl;
   cout << "\t + Numbers [0-9]" << endl;
   cout << "\t + Alphabet letters [a-z] [A-Z]" << endl;
-  cout << "\t + Special characters: _ (underscore) . (dot)" << endl;
+  cout << "\t + Special characters: _ (underscore) . (dot) - (minus)" << endl;
   utils::print_sep_line();
 }
 
@@ -33,7 +33,8 @@ bool utils::check_valid_character(const char &ch) {
     ('a' <= ch && ch <= 'z') ||
     ('A' <= ch && ch <= 'Z') ||
     ch == '.' ||
-    ch == '_'
+    ch == '_' ||
+    ch == '-'
   );
 }
 

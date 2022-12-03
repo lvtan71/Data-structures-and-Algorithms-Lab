@@ -48,8 +48,9 @@ void option_2(HashTable<FolderData> &cache) {
   cout << "File path:" << endl;
   
   FileData *file_paths = nullptr;
-  folder_data->retrieve(target_name, file_paths);
-  if (file_paths != nullptr) cout << *file_paths;
+  if(folder_data->retrieve(target_name, file_paths)) {
+    cout << *file_paths;
+  }
 
   utils::print_sep_line();
 }

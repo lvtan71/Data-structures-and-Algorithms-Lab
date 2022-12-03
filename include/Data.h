@@ -58,7 +58,7 @@ struct FolderData : public BaseData {
    *  => abs_path->insertPath("xy", "d:\abc\xy")
    */
   void append(const string &path);
-  void retrieve(const string &key, FileData* &result);
+  bool retrieve(const string &key, FileData* &result);
 
   HashTable<FileData> *abs_path;
 };
