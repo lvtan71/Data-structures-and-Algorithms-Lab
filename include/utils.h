@@ -3,6 +3,9 @@
 using namespace std;
 
 namespace utils {
+  void print_sep_line();
+  void print_menu();
+
   enum PathType {
     kDisk,
     kFolderNFile,

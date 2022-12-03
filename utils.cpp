@@ -1,6 +1,18 @@
 #include <iostream>
 #include "include/utils.h"
 
+void utils::print_sep_line() {
+  cout << "-------------------------------------------------" << endl;
+}
+
+void utils::print_menu() {
+  cout << "Option 1: Print directory tree" << endl;  
+  cout << "Option 2: Find a file in a folder" << endl;
+  cout << "Option 3: Reoreder files in a folder" << endl;
+  cout << "Option 0: Exit" << endl;
+  utils::print_sep_line();
+}
+
 void utils::print_path_format() {
   cout << "Disk path format: " << endl;
   cout << "<Disk>:\\" << endl;
@@ -9,7 +21,7 @@ void utils::print_path_format() {
   cout << "File path format: " << endl;
   cout << "<Disk>:\\<Folder1>\\<File>" << endl;
   cout << "Name of disk, folder and file is not empty and does not contain \":\" \"\\\"" << endl;
-  cout << "-------------------------------------------------" << endl;
+  utils::print_sep_line();
 }
 
 bool utils::check_path_format(const string &path) {
