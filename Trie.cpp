@@ -5,6 +5,10 @@ Trie::Trie() :
   root_(createNode())
 {}
 
+Trie::~Trie() {
+  deleteNode(root_);
+}
+
 bool Trie::insertFile(const string &file_name, const string &abs_path) {
   if (abs_path.size() == 0) return false;
   int idx;
@@ -41,6 +45,16 @@ Trie::Node* Trie::createNode() const {
   }
 
   return new_node;
+}
+
+void Trie::deleteNode(Trie::Node *root) {
+  if (root == nullptr) return;
+
+  for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
+    deleteNode(root->child[i]);
+  }
+
+  delete root;
 }
 
 int Trie::char_to_child_idx(const char &ch) const {

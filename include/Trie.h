@@ -7,6 +7,7 @@ using namespace std;
 class Trie {
 public:
   Trie();
+  ~Trie();
 
   /*
    * Not insert file_name and return false if abs_path is an empty string
@@ -29,5 +30,7 @@ private:
   Node *root_;
 
   int char_to_child_idx(const char &ch) const;
+
   Node* createNode() const;
+  void deleteNode(Node *root);
 };
