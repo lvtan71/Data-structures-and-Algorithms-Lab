@@ -18,20 +18,7 @@ void option_2(HashTable<FolderData> &cache) {
     return;
   }
 
-  FolderData *folder_data;
-
-  // Folder has not cached => Recursively list all files in folder
-  if (!cache.retrieve(folder_path, folder_data)) {
-
-    // Callback function executed when hit an absolute path of a file
-    auto handleAppend = [&cache, &folder_path] (const string &path) {
-      cache.insertPath(folder_path, path);
-    };
-    
-    utils_::file_recursive_with_callback(folder_path, handleAppend);
-
-    cache.retrieve(folder_path, folder_data);
-  }
+  FolderData *folder_data = utils::list_files_from_path(cache, folder_path);
 
   cout << "File path:" << endl;
   
