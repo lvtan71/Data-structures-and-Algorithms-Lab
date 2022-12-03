@@ -6,6 +6,8 @@ namespace utils {
   void print_sep_line();
   void print_menu();
 
+  bool check_valid_character(const char &ch);
+
   enum PathType {
     kDisk,
     kFolderNFile,
