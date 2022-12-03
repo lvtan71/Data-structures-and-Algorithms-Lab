@@ -2,9 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "Constants.h"
 
 using namespace std;
-const int MAX_FILE_HT_SIZE = 500;
 
 // Forward declaration
 template <class T>
@@ -58,7 +58,7 @@ struct FolderData : public BaseData {
    *  => abs_path->insertPath("xy", "d:\abc\xy")
    */
   void append(const string &path);
-  void retrieve(const string &key, FileData* &result);
+  bool retrieve(const string &key, FileData* &result);
 
   HashTable<FileData> *abs_path;
 };
