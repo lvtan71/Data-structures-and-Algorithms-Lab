@@ -37,4 +37,4 @@ test: $(TESTS)
 
 .PHONY: clean
 clean:
-	rm -f $(ODIR)/* $(BDIR)/*
+	rm -f $(ODIR)/*.o $(BDIR)/*.exe $(BDIR)/*.test
