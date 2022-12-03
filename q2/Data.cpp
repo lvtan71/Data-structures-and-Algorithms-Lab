@@ -5,6 +5,14 @@
 void FileData::append(const string &path) {
   abs_path.emplace_back(path);
 }
+
+ostream& operator<<(ostream &stream, const FileData &rhs) {
+  for(const auto &path : rhs.abs_path) {
+    stream << path << endl;
+  }
+  return stream;
+}
+
 FolderData::FolderData() : 
   abs_path(nullptr) 
 {}
@@ -23,4 +31,8 @@ void FolderData::append(const string &path) {
   if(utils::get_path_target(path, key) == utils::kFolderNFile) {
     abs_path->insertPath(key, path);
   } 
+}
+
+void FolderData::retrieve(const string &key, FileData* &result) {
+  abs_path->retrieve(key, result);
 }

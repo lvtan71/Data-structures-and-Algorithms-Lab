@@ -9,6 +9,7 @@ void utils::print_path_format() {
   cout << "File path format: " << endl;
   cout << "<Disk>:\\<Folder1>\\<File>" << endl;
   cout << "Name of disk, folder and file is not empty and does not contain \":\" \"\\\"" << endl;
+  cout << "-------------------------------------------------" << endl;
 }
 
 bool utils::check_path_format(const string &path) {
@@ -27,6 +28,10 @@ bool utils::check_path_format(const string &path) {
   }
 
   return path.back() != '\\';
+}
+bool utils::check_valid_file(const string &file) {
+  for (const auto &ch : file) if (ch == '\\' || ch == ':') return false;
+  return true; 
 }
 
 utils::PathType utils::get_path_target(const string &path, string &result) {

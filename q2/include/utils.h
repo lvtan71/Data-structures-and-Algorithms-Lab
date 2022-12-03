@@ -10,5 +10,6 @@ namespace utils {
   };
   void print_path_format();
   bool check_path_format(const string &path);
+  bool check_valid_file(const string &file);
   PathType get_path_target(const string &path, string &result);
 }

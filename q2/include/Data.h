@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <vector>
 #include <string>
 
@@ -25,11 +26,12 @@ struct FileData : public BaseData {
 
   /*
    * @note assume path has utils::kFolderNFile type
-   * @onerror do not append path
    */
   void append(const string &path);
 
   vector<string> abs_path;
+
+  friend ostream& operator<<(ostream &stream, const FileData &rhs);
 };
 
 /* 
@@ -56,6 +58,7 @@ struct FolderData : public BaseData {
    *  => abs_path->insertPath("xy", "d:\abc\xy")
    */
   void append(const string &path);
+  void retrieve(const string &key, FileData* &result);
 
   HashTable<FileData> *abs_path;
 };
