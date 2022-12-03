@@ -5,6 +5,10 @@ void option_3(HashTable<FolderData> &cache) {
   string folder_path;
   cout << "Folder path: ";
   cin >> folder_path;
+  if (!utils::check_path_format(folder_path)) {
+    cerr << "Error: Invalid folder path" << endl;
+    return;
+  }
 
   FolderData *folder_data = utils::list_files_from_path(cache, folder_path);
 
