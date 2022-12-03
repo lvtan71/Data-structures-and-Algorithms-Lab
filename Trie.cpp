@@ -9,6 +9,10 @@ Trie::~Trie() {
   deleteNode(root_);
 }
 
+TrieNode *Trie::getRoot() const {
+  return root_;
+}
+
 bool Trie::insertFile(const string &file_name, const string &abs_path) {
   if (abs_path.size() == 0) return false;
   int idx;

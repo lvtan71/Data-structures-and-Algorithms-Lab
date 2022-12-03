@@ -16,6 +16,8 @@ public:
   Trie();
   ~Trie();
 
+  TrieNode *getRoot() const;
+
   /*
    * Not insert file_name and return false if abs_path is an empty string
    * Return false if file_name has already inserted, otherwise return true
