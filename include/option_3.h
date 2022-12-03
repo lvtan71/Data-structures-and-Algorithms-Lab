@@ -1,4 +1,5 @@
 #pragma once
+#include "Trie.h"
 #include "Data.h"
 #include "HashTable.h"
 #include "utils.h"
