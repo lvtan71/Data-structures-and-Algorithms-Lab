@@ -9,7 +9,7 @@ CFLAGS=-I $(IDIR) -Wall -Wextra -std=c++17
 _DEPS = HashTable.h Trie.h LinkedList.h Data.h utils.h utils_.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = HashTable.o Trie.o LinkedList.o Data.o utils.o utils_.o
+_OBJ = HashTable.o Trie.o LinkedList.o Data.o utils.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 _TESTS = ll.test ht.test trie.test check_valid_path.test
