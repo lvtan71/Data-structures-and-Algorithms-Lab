@@ -2,9 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "Constants.h"
 
 using namespace std;
-const int MAX_FILE_HT_SIZE = 500;
 
 // Forward declaration
 template <class T>

@@ -1,13 +1,13 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "Constants.h"
 
 // Forward declaration
 template<class T>
 class LinkedList;
 
 using namespace std;
-const int MAX_INT = 0x7FFFFFFF;
 
 template<class T>
 class HashTable {

@@ -4,6 +4,7 @@
 #include "include/HashTable.h"
 #include "include/utils.h"
 #include "include/utils_.h"
+#include "include/Constants.h"
 
 using namespace std;
 
@@ -58,7 +59,6 @@ void option_3(HashTable<FolderData> &cache) {
 }
 
 int main() {
-  const int HT_FOLDER_MAX_SIZE = 50;
   HashTable<FolderData> cache(HT_FOLDER_MAX_SIZE);
 
   int opt;

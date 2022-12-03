@@ -26,7 +26,7 @@ FolderData::~FolderData() {
 }
 
 void FolderData::append(const string &path) {
-  if (abs_path == nullptr) abs_path = new HashTable<FileData>(MAX_FILE_HT_SIZE);
+  if (abs_path == nullptr) abs_path = new HashTable<FileData>(HT_FILE_MAX_SIZE);
   string key;
   if(utils::get_path_target(path, key) == utils::kFolderNFile) {
     abs_path->insertPath(key, path);

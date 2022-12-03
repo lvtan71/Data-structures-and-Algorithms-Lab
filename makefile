@@ -6,7 +6,7 @@ TDIR=./test
 CC=g++
 CFLAGS=-I $(IDIR) -Wall -Wextra -std=c++17
 
-_DEPS = HashTable.h Trie.h LinkedList.h Data.h utils.h utils_.h
+_DEPS = HashTable.h Trie.h LinkedList.h Data.h utils.h utils_.h Constants.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 _OBJ = HashTable.o Trie.o LinkedList.o Data.o utils.o
