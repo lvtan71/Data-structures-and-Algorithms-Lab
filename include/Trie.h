@@ -4,6 +4,13 @@
 
 using namespace std;
 
+struct TrieNode {
+  // @note One file_name can only have one absolute path
+  string abs_path; 
+  int num_descendent;
+  TrieNode* child[NUM_CHILD_TRIE_NODE];
+};
+
 class Trie {
 public:
   Trie();
@@ -20,17 +27,11 @@ public:
   bool insertFile(const string &file_name, const string &abs_path);
 
 private:
-  struct Node {
-    // @note One file_name can only have one absolute path
-    string abs_path; 
-    int num_descendent;
-    Node* child[NUM_CHILD_TRIE_NODE];
-  };
 
-  Node *root_;
+  TrieNode *root_;
 
   int char_to_child_idx(const char &ch) const;
 
-  Node* createNode() const;
-  void deleteNode(Node *root);
+  TrieNode* createNode() const;
+  void deleteNode(TrieNode *root);
 };

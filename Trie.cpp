@@ -12,7 +12,7 @@ Trie::~Trie() {
 bool Trie::insertFile(const string &file_name, const string &abs_path) {
   if (abs_path.size() == 0) return false;
   int idx;
-  Node *cur = root_;
+  TrieNode *cur = root_;
 
   for (const auto &ch : file_name) {
     if (utils::check_valid_character(ch)) {
@@ -36,8 +36,8 @@ bool Trie::insertFile(const string &file_name, const string &abs_path) {
   return false;
 }
 
-Trie::Node* Trie::createNode() const {
-  Node *new_node = new Node;
+TrieNode* Trie::createNode() const {
+  TrieNode *new_node = new TrieNode;
   new_node->abs_path = "";
 
   for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
@@ -47,7 +47,7 @@ Trie::Node* Trie::createNode() const {
   return new_node;
 }
 
-void Trie::deleteNode(Trie::Node *root) {
+void Trie::deleteNode(TrieNode *root) {
   if (root == nullptr) return;
 
   for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
