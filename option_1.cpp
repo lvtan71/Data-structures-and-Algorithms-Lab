@@ -22,7 +22,7 @@ void option_1::run(HashTable<FolderData> &cache) {
     return;
   }
 
-  option_1::print_directory_tree(folder_path, cache);
+  print_directory_tree(folder_path, cache);
   utils::print_sep_line();
 }
 

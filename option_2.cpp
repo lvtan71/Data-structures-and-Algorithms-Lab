@@ -1,6 +1,6 @@
 #include "include/option_2.h"
 
-void option_2(HashTable<FolderData> &cache) {
+void option_2::run(HashTable<FolderData> &cache) {
   utils::print_path_format();
 
   string folder_path, target_name;
