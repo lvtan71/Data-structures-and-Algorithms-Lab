@@ -2,6 +2,11 @@
 #include <string>
 using namespace std;
 
+const int MAX_DIRECTORY_TREE_DEPTH = 63;
+const string END_SYSMBOL = "|_ ";
+const string OPEN_SYSMBOL = "|  ";
+const string CLOSE_SYSMBOL = "   ";
+
 const int MAX_INT = 0x7FFFFFFF;
 
 const int HT_FOLDER_MAX_SIZE = 50;
