@@ -22,13 +22,13 @@ int main() {
     utils::print_sep_line();
     switch(opt) {
       case 1:
-        option_1(cache);
+        option_1::run(cache);
         break;
       case 2:
-        option_2(cache);
+        option_2::run(cache);
         break;
       case 3:
-        option_3(cache);
+        option_3::run(cache);
         break;
       case 0:
         return 0;

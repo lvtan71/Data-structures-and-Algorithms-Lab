@@ -1,6 +1,6 @@
 #include "include/option_3.h"
 
-void option_3(HashTable<FolderData> &cache) {
+void option_3::run(HashTable<FolderData> &cache) {
   utils::print_path_format();
   string folder_path;
   cout << "Folder path: ";
@@ -51,24 +51,7 @@ void option_3(HashTable<FolderData> &cache) {
   cache.remove(folder_path);
 }
 
-void move_file(const string &dest_path, const string &src_path) {
-  cout << "From: " << src_path << endl;
-  cout << "To: " << dest_path << endl;
-  utils::print_sep_line();
-}
-
-void dfs2(TrieNode *root, const string &dest_path) {
-  if (root->abs_path.size() != 0) {
-    move_file(dest_path, root->abs_path);
-  }
-  for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
-    if (root->child[i] != nullptr) {
-      dfs2(root->child[i], dest_path);
-    }
-  }
-}
-
-void dfs1(TrieNode *root, const string &folder_path, const string prefix_path) {
+void option_3::dfs1(TrieNode *root, const string &folder_path, const string prefix_path) {
   if (root->num_descendent + (root->abs_path.size() != 0) <= 3) {
 
     string dest_path = folder_path;
@@ -96,6 +79,23 @@ void dfs1(TrieNode *root, const string &folder_path, const string prefix_path) {
   }
 }
 
-void dfs1(TrieNode *root, const string &folder_path) {
+void option_3::dfs2(TrieNode *root, const string &dest_path) {
+  if (root->abs_path.size() != 0) {
+    move_file(dest_path, root->abs_path);
+  }
+  for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
+    if (root->child[i] != nullptr) {
+      dfs2(root->child[i], dest_path);
+    }
+  }
+}
+
+void option_3::dfs1(TrieNode *root, const string &folder_path) {
   dfs1(root, folder_path, "");
+}
+
+void option_3::move_file(const string &dest_path, const string &src_path) {
+  cout << "From: " << src_path << endl;
+  cout << "To: " << dest_path << endl;
+  utils::print_sep_line();
 }

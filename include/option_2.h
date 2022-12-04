@@ -4,4 +4,6 @@
 #include "utils.h"
 #include "utils_.h"
 
-void option_2(HashTable<FolderData> &cache);
+namespace option_2 {
+  void run(HashTable<FolderData> &cache);
+}
