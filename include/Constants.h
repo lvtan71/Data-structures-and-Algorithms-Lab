@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+using namespace std;
 
 const int MAX_INT = 0x7FFFFFFF;
 
@@ -20,3 +22,5 @@ const char VALID_CHARS[] = {
 };
 
 constexpr int NUM_CHILD_TRIE_NODE = sizeof(VALID_CHARS) / sizeof(char);
+
+const string ORDERED_FOLDER_NAME = "OrderedFolder";
