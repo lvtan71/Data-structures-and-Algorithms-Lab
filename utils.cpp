@@ -24,7 +24,12 @@ void utils::print_path_format() {
   cout << "Name of disk, folder and file is not empty and only contains: " << endl;
   cout << "\t + Numbers [0-9]" << endl;
   cout << "\t + Alphabet letters [a-z] [A-Z]" << endl;
-  cout << "\t + Special characters: _ (underscore) . (dot) - (minus)" << endl;
+  cout << "\t + Special characters:" << endl;
+  cout << "\t\t _ (underscore)" << endl;
+  cout << "\t\t . (dot)" << endl;
+  cout << "\t\t - (minus)" << endl;
+  cout << "\t\t ( (open bracket)" << endl;
+  cout << "\t\t ) (close bracket)" << endl;
   utils::print_sep_line();
 }
 

@@ -68,9 +68,11 @@ int Trie::char_to_child_idx(const char &ch) const {
   if ('a' <= ch && ch <= 'z') return ('9' - '0' + 1) + (ch - 'a');
   if ('A' <= ch && ch <= 'Z') return ('9' - '0' + 1) + ('z' - 'a' + 1) + (ch - 'A');
 
-  if (ch == '_') return NUM_CHILD_TRIE_NODE - 3;
-  if (ch == '.') return NUM_CHILD_TRIE_NODE - 2;
-  if (ch == '-') return NUM_CHILD_TRIE_NODE - 1;
+  if (ch == '_') return NUM_CHILD_TRIE_NODE - 5;
+  if (ch == '.') return NUM_CHILD_TRIE_NODE - 4;
+  if (ch == '-') return NUM_CHILD_TRIE_NODE - 3;
+  if (ch == '(') return NUM_CHILD_TRIE_NODE - 2;
+  if (ch == ')') return NUM_CHILD_TRIE_NODE - 1;
 
   return -1;
 }
