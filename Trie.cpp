@@ -43,6 +43,7 @@ bool Trie::insertFile(const string &file_name, const string &abs_path) {
 TrieNode* Trie::createNode() const {
   TrieNode *new_node = new TrieNode;
   new_node->abs_path = "";
+  new_node->num_descendent = 0;
 
   for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
     new_node->child[i] = nullptr;
