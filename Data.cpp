@@ -35,8 +35,7 @@ void FolderData::append(const string &path) {
 
 bool FolderData::retrieve(const string &key, FileData* &result) {
   if (abs_path != nullptr) {
-    abs_path->retrieve(key, result);
-    return true;
+    return abs_path->retrieve(key, result);
   }
   return false;
 }
