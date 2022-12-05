@@ -10,7 +10,7 @@ const string CLOSE_SYSMBOL = "   ";
 const int MAX_INT = 0x7FFFFFFF;
 
 const int HT_FOLDER_MAX_SIZE = 50;
-const int HT_FILE_MAX_SIZE = 500;
+const int HT_FILE_MAX_SIZE = 1000;
 
 const char VALID_CHARS[] = {
   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
