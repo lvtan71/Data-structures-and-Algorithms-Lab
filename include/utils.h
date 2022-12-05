@@ -1,7 +1,10 @@
 #pragma once
 #include <string>
+#include <filesystem>
 #include "Data.h"
 #include "HashTable.h"
+using namespace std;
+namespace fs = std::filesystem;
 
 using namespace std;
 

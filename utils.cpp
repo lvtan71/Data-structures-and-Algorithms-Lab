@@ -1,6 +1,5 @@
 #include <iostream>
 #include "include/utils.h"
-#include "include/utils_.h"
 
 void utils::print_sep_line() {
   cout << "-------------------------------------------------" << endl;
@@ -94,12 +93,11 @@ FolderData *utils::list_files_from_path(
   // Folder has not cached => Recursively list all files in folder
   if (!cache.retrieve(folder_path, folder_data)) {
 
-    // Callback function executed when hit an absolute path of a file
-    auto handleAppend = [&cache, &folder_path] (const string &path) {
-      cache.insertPath(folder_path, path);
-    };
-    
-    utils_::file_recursive_with_callback(folder_path, handleAppend);
+    for (const auto &entry : fs::recursive_directory_iterator(folder_path)) {
+      if (!fs::is_directory(entry)) {
+        cache.insertPath(folder_path, entry.path().string());
+      }
+    }
 
     cache.retrieve(folder_path, folder_data);
   }
