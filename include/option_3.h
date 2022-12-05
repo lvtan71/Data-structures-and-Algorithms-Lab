@@ -5,7 +5,7 @@
 #include "utils.h"
 
 namespace option_3 {
-  void run(HashTable<FolderData> &cache);
+  void run(const string &folder_path, HashTable<FolderData> &cache);
 
   /*
    * Find a node X that have X->num_descendent + (X->abs_path.size() != 0) <= 3
@@ -19,17 +19,34 @@ namespace option_3 {
    * `prefix_path`: ABC
    * => `dest_path`: d:\OrderedFolder\A\AB\ABC
    */
-  void dfs1(TrieNode *root, const string &folder_path, const string prefix_path);
+  void dfs1(
+    TrieNode *root, 
+    const string &folder_path, 
+    const string prefix_path,
+    HashTable<FolderData> &cache
+  );
 
   /*
    * Find and move files stored in root and its descendent to `dest_path`
    */
-  void dfs2(TrieNode *root, const string &dest_path);
+  void dfs2(
+    TrieNode *root, 
+    const string &dest_path,
+    HashTable<FolderData> &cache
+  );
 
   // function overloading to hide the details
-  void dfs1(TrieNode *root, const string &folder_path);
+  void dfs1(
+    TrieNode *root, 
+    const string &folder_path,
+    HashTable<FolderData> &cache
+  );
 
   // Move function
-  void move_file(const string &dest_path, const string &src_path);
+  void move_file(
+    const string &dest_path, 
+    const string &src_path,
+    HashTable<FolderData> &cache
+  );
 }
 

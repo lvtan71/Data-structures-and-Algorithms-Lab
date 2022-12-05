@@ -13,7 +13,7 @@ namespace option_1 {
   typedef long long AncestorInfo;
 
   // Driver code
-  void run(HashTable<FolderData> &cache);
+  void run(const string &folder_path, HashTable<FolderData> &cache);
 
   /*
    * Iterate over files and folders at the same level,

@@ -4,5 +4,5 @@
 #include "utils.h"
 
 namespace option_2 {
-  void run(HashTable<FolderData> &cache);
+  void run(const string &folder_path, HashTable<FolderData> &cache);
 }

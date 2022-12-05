@@ -1,15 +1,7 @@
 #include "include/option_2.h"
 
-void option_2::run(HashTable<FolderData> &cache) {
-  utils::print_path_format();
-
-  string folder_path, target_name;
-  cout << "Folder path: ";
-  cin >> folder_path;
-  if (!utils::check_path_format(folder_path)) {
-    cerr << "Error: Invalid folder path" << endl;
-    return;
-  }
+void option_2::run(const string &folder_path, HashTable<FolderData> &cache) {
+  string target_name;
 
   cout << "File name: ";
   cin >> target_name;
@@ -18,7 +10,14 @@ void option_2::run(HashTable<FolderData> &cache) {
     return;
   }
 
-  FolderData *folder_data = utils::list_files_from_path(cache, folder_path);
+  FolderData *folder_data;
+
+  try {
+    folder_data = utils::list_files_from_path(cache, folder_path);
+  } catch (fs::filesystem_error const& ex) {
+    cerr << "Error: Encounter invalid file or folder name while finding" << endl;
+    return;
+  }
 
   cout << "File path:" << endl;
   
@@ -28,5 +27,4 @@ void option_2::run(HashTable<FolderData> &cache) {
   }
 
   utils::print_sep_line();
-
 }

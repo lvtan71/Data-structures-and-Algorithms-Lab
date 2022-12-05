@@ -1,28 +1,12 @@
 #include "include/option_1.h"
 
-void option_1::run(HashTable<FolderData> &cache) {
-  utils::print_path_format();
-
-  cout << "Note: maximum depth for directory tree is 64" << endl;
-  utils::print_sep_line();
-
-  string folder_path;
-  cout << "Folder path: ";
-  cin >> folder_path;
-  if (!utils::check_path_format(folder_path)) {
-    cerr << "Error: Invalid folder path" << endl;
+void option_1::run(const string &folder_path, HashTable<FolderData> &cache) {
+  try {
+    print_directory_tree(folder_path, cache);
+  } catch (fs::filesystem_error const& ex) {
+    cerr << "Error: Encounter invalid file or folder name while listing" << endl;
     return;
   }
-
-  utils::print_sep_line();
-
-  if (!fs::exists(fs::path(folder_path))) {
-    cerr << "Error: Folder does not exist" << endl;
-    utils::print_sep_line();
-    return;
-  }
-
-  print_directory_tree(folder_path, cache);
   utils::print_sep_line();
 }
 

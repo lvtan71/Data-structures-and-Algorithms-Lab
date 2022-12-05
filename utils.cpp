@@ -6,9 +6,10 @@ void utils::print_sep_line() {
 }
 
 void utils::print_menu() {
-  cout << "Option 1: Print directory tree" << endl;  
-  cout << "Option 2: Find a file in a folder" << endl;
-  cout << "Option 3: Reoreder files in a folder" << endl;
+  cout << "Option 1: Print directory tree (maximum depth is 64)" << endl;  
+  cout << "Option 2: Find a file" << endl;
+  cout << "Option 3: Reoreder files" << endl;
+  cout << "Option 4: Choose another starting directory" << endl;
   cout << "Option 0: Exit" << endl;
   utils::print_sep_line();
 }
