@@ -155,33 +155,20 @@ void option_3::move_file(
   HashTable<FolderData> &cache
 ) {
   (void)cache;
-  //cout << fs::current_path() << "\n";
   cout << "From: " << src_path << endl;
   cout << "To: " << dest_path << endl;
   try {
       string file_name;
       utils::get_path_target(dest_path, file_name);
-      cout << file_name << endl;
       string directory_name = dest_path.substr(0,dest_path.length() - file_name.length() - 1);
 
-      cout << directory_name << endl;
       fs::create_directories(directory_name);
 
       fs::copy(src_path, dest_path);
   }
   catch (fs::filesystem_error const& fe) {
-      //
+    cerr << "Error: An error occours when moving files" << endl;
   }
-  
-
-  // try {
-  //     fs::create_directories(dest_path);
-  //     fs::copy(src_path, dest_path);
-  // }
-  // catch (fs::filesystem_error const fe) {
-  //
-  // }
-
   utils::print_sep_line();
 }
 
