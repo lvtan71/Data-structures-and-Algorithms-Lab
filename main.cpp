@@ -41,6 +41,7 @@ int main() {
 
       cout << "Option: ";
       cin >> opt;
+      cin.ignore();
       utils::print_sep_line();
       switch(opt) {
         case 1:
