@@ -17,10 +17,6 @@ FolderData::FolderData() :
   abs_path(nullptr) 
 {}
 
-FolderData::FolderData(int size) {
-  abs_path = new HashTable<FileData>(size);
-}
-
 FolderData::~FolderData() {
   delete abs_path;
 }

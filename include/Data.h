@@ -46,7 +46,6 @@ struct FolderData : public BaseData {
   // abs_path only created when a path is added
   FolderData();
 
-  FolderData(int size);
   ~FolderData();
   
   /*
