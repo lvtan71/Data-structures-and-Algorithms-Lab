@@ -121,8 +121,13 @@ void option_3::move_file(
   //cout << fs::current_path() << "\n";
   cout << "From: " << src_path << endl;
   cout << "To: " << dest_path << endl;
-  fs::create_directories(dest_path);
-  fs::copy(src_path, dest_path);
+  try {
+      fs::create_directories(dest_path);
+      fs::copy(src_path, dest_path);
+  }
+  catch (fs::filesystem_error const fe) {
+
+  }
   
 
   //string s;
