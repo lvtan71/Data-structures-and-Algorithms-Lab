@@ -26,22 +26,26 @@ int main() {
   HashTable<FolderData> cache(HT_FOLDER_MAX_SIZE);
 
   int opt;
-  string folder_path;
+  string folder_path = "";
 
   while (true) {
     utils::print_path_format();
     cout << "Disk/Folder path: ";
-    getline(cin, folder_path);
+    while (folder_path.size() == 0) getline(cin, folder_path);
 
     utils::print_sep_line();
-    if (!check_input_folder_path(folder_path)) continue;
+
+    if (!check_input_folder_path(folder_path)) {
+      folder_path = "";
+      continue;
+    } 
+
     opt = -1;
     while (opt != 4) {
       utils::print_menu();
 
       cout << "Option: ";
       cin >> opt;
-      cin.ignore();
       utils::print_sep_line();
       switch(opt) {
         case 1:
@@ -54,6 +58,7 @@ int main() {
           option_3::run(folder_path, cache);
           break;
         case 4:
+          folder_path = "";
           break;
         case 0:
           return 0;
