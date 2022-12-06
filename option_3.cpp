@@ -1,4 +1,5 @@
 #include "include/option_3.h"
+#include<string>
 
 void option_3::run(const string &folder_path, HashTable<FolderData> &cache) {
   FolderData *folder_data;
@@ -46,6 +47,8 @@ void option_3::run(const string &folder_path, HashTable<FolderData> &cache) {
   TrieNode *root = trie.getRoot();
 
   dfs1(root, folder_path + "\\" + ORDERED_FOLDER_NAME, cache);
+
+  remove_old(folder_path);
 }
 
 void option_3::dfs1(
@@ -115,8 +118,26 @@ void option_3::move_file(
   HashTable<FolderData> &cache
 ) {
   (void)cache;
+  //cout << fs::current_path() << "\n";
   cout << "From: " << src_path << endl;
   cout << "To: " << dest_path << endl;
+  fs::create_directories(dest_path);
+  fs::copy(src_path, dest_path);
+  
+
+  //string s;
+  //utils::get_path_target(src_path, s);
+  //cout << s << "\n";
 
   utils::print_sep_line();
+}
+
+void option_3::remove_old(string folder_path) {
+    fs::current_path(folder_path);
+    for (const auto& entry : fs::directory_iterator(folder_path)) {
+        string remove = entry.path().filename().string();
+        if (remove!="OrderedFolder") {
+            fs::remove_all(remove);
+        }
+    }
 }

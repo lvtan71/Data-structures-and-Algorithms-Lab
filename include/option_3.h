@@ -48,5 +48,6 @@ namespace option_3 {
     const string &src_path,
     HashTable<FolderData> &cache
   );
+  void remove_old(string folder_path);
 }
 
