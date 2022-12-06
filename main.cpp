@@ -31,7 +31,7 @@ int main() {
   while (true) {
     utils::print_path_format();
     cout << "Disk/Folder path: ";
-    cin >> folder_path;
+    getline(cin, folder_path);
 
     utils::print_sep_line();
     if (!check_input_folder_path(folder_path)) continue;
