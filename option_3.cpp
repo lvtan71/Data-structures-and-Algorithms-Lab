@@ -73,12 +73,12 @@ void option_3::run(const string &folder_path, HashTable<FolderData> &cache) {
 
   TrieNode *root = trie.getRoot();
 
-  dfs1(root, folder_path + "\\" + ORDERED_FOLDER_NAME, cache);
+  dfs_solve_request(root, folder_path + "\\" + ORDERED_FOLDER_NAME, cache);
 
   // remove_old(folder_path);
 }
 
-void option_3::dfs1(
+void option_3::dfs_solve_request(
     TrieNode *root, 
     const string &folder_path, 
     const string prefix_path,
@@ -108,14 +108,14 @@ void option_3::dfs1(
 
     for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
       if (root->child[i] != nullptr) {
-        dfs2(root->child[i], dest_path + VALID_CHARS[i], cache);
+        dfs_listing_in(root->child[i], dest_path + VALID_CHARS[i], cache);
       }
     }
 
   } else {
     for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
       if (root->child[i] != nullptr) {
-        dfs1(
+        dfs_solve_request(
           root->child[i], 
           folder_path, 
           prefix_path + VALID_CHARS[i], 
@@ -126,7 +126,7 @@ void option_3::dfs1(
   }
 }
 
-void option_3::dfs2(
+void option_3::dfs_listing_in(
   TrieNode *root, 
   string dest_path,
   HashTable<FolderData> &cache
@@ -136,17 +136,17 @@ void option_3::dfs2(
   }
   for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
     if (root->child[i] != nullptr) {
-      dfs2(root->child[i], dest_path + VALID_CHARS[i], cache);
+      dfs_listing_in(root->child[i], dest_path + VALID_CHARS[i], cache);
     }
   }
 }
 
-void option_3::dfs1(
+void option_3::dfs_solve_request(
   TrieNode *root, 
   const string &folder_path,
   HashTable<FolderData> &cache
 ) {
-  dfs1(root, folder_path, "", cache);
+  dfs_solve_request(root, folder_path, "", cache);
 }
 
 void option_3::move_file(

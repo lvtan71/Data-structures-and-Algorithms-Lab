@@ -19,7 +19,7 @@ namespace option_3 {
    * `prefix_path`: ABC
    * => `dest_path`: d:\OrderedFolder\A\AB\ABC
    */
-  void dfs1(
+  void dfs_solve_request(
     TrieNode *root, 
     const string &folder_path, 
     const string prefix_path,
@@ -29,14 +29,14 @@ namespace option_3 {
   /*
    * Find and move files stored in root and its descendent to `dest_path`
    */
-  void dfs2(
+  void dfs_listing_in(
     TrieNode *root, 
     string dest_path,
     HashTable<FolderData> &cache
   );
 
   // function overloading to hide the details
-  void dfs1(
+  void dfs_solve_request(
     TrieNode *root, 
     const string &folder_path,
     HashTable<FolderData> &cache
