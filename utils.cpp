@@ -90,7 +90,7 @@ FolderData *utils::list_files_from_path(
     HashTable<FolderData> &cache, 
     const string &folder_path
 ) {
-  FolderData *folder_data;
+  FolderData *folder_data = nullptr;
   // Folder has not cached => Recursively list all files in folder
   if (!cache.retrieve(folder_path, folder_data)) {
 
@@ -99,7 +99,6 @@ FolderData *utils::list_files_from_path(
         cache.insertPath(folder_path, entry.path().string());
       }
     }
-
     cache.retrieve(folder_path, folder_data);
   }
   return folder_data;

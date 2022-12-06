@@ -11,6 +11,10 @@ void option_3::run(const string &folder_path, HashTable<FolderData> &cache) {
     return;
   }
 
+  if (folder_data == nullptr) {
+    return;
+  }
+
   Trie trie;
 
   FileData *file_data;
