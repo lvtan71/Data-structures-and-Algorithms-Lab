@@ -22,7 +22,10 @@ void option_2::run(const string &folder_path, HashTable<FolderData> &cache) {
   cout << "File path:" << endl;
   
   FileData *file_paths = nullptr;
-  if(folder_data->retrieve(target_name, file_paths)) {
+  if(
+    folder_data != nullptr &&
+    folder_data->retrieve(target_name, file_paths)
+  ) {
     cout << *file_paths;
   }
 

@@ -11,6 +11,10 @@ void option_3::run(const string &folder_path, HashTable<FolderData> &cache) {
     return;
   }
 
+  if (folder_data == nullptr) {
+    return;
+  }
+
   Trie trie;
 
   FileData *file_data;
@@ -168,9 +172,13 @@ void option_3::move_file(
   }
   
 
-  //string s;
-  //utils::get_path_target(src_path, s);
-  //cout << s << "\n";
+  // try {
+  //     fs::create_directories(dest_path);
+  //     fs::copy(src_path, dest_path);
+  // }
+  // catch (fs::filesystem_error const fe) {
+  //
+  // }
 
   utils::print_sep_line();
 }

@@ -5,7 +5,7 @@
 
 template<class T>
 HashTable<T>::HashTable(int size) :
-  table_(std::move(vector<LinkedList*>(size, nullptr)))
+  table_(std::move(vector<LinkedList<T>*>(size, nullptr)))
 {}
 
 template<class T>
@@ -40,7 +40,7 @@ bool HashTable<T>::insertPath(const string &key, const string &path) {
   int idx = hash(key);   
 
   if (table_[idx] == nullptr) {
-    table_[idx] = new LinkedList;
+    table_[idx] = new LinkedList<T>;
   }
 
   if (table_[idx]->appendPath(key, path)) keys.push_back(key);
