@@ -51,7 +51,7 @@ void option_3::run(const string &folder_path, HashTable<FolderData> &cache) {
       for (auto &path : file_data->abs_path) {
         string tag = path.substr(0, (int)path.size() - (int)key.size());
 
-        // The implementation of insertFile method of trie ignores ":" and "\"
+        // The implementation of insertFile method of trie ignores ":", "\" and " "
 
         if (dot_pos != -1) { // File with extension
           string new_file_name = key.substr(0, dot_pos) + "_" + tag + key.substr(dot_pos);
