@@ -19,7 +19,7 @@ bool Trie::insertFile(const string &file_name, const string &abs_path) {
   TrieNode *cur = root_;
 
   for (const auto &ch : file_name) {
-    if (ch != ' ' && utils::check_valid_character(ch)) {
+    if (utils::check_valid_character(ch)) {
 
       idx = char_to_child_idx(ch);
 
