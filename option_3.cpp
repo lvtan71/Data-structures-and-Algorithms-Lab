@@ -161,8 +161,10 @@ void option_3::move_file(
   try {
       string file_name;
       utils::get_path_target(dest_path, file_name);
-      string directory_name = dest_path.substr(dest_path.length() - file_name.length() + 1);
+      cout << file_name << endl;
+      string directory_name = dest_path.substr(0,dest_path.length() - file_name.length() - 1);
 
+      cout << directory_name << endl;
       fs::create_directories(directory_name);
 
       fs::copy(src_path, dest_path);
