@@ -30,6 +30,7 @@ void utils::print_path_format() {
   cout << "\t\t - (minus)" << endl;
   cout << "\t\t ( (open bracket)" << endl;
   cout << "\t\t ) (close bracket)" << endl;
+  cout << "\t\t   (space)" << endl;
   utils::print_sep_line();
 }
 
@@ -40,7 +41,10 @@ bool utils::check_valid_character(const char &ch) {
     ('A' <= ch && ch <= 'Z') ||
     ch == '.' ||
     ch == '_' ||
-    ch == '-'
+    ch == '-' ||
+    ch == '(' ||
+    ch == ')' ||
+    ch == ' '
   );
 }
 
