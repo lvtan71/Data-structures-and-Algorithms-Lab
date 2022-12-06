@@ -31,7 +31,7 @@ namespace option_3 {
    */
   void dfs2(
     TrieNode *root, 
-    const string &dest_path,
+    string dest_path,
     HashTable<FolderData> &cache
   );
 

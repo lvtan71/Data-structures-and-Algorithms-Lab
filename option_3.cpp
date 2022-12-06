@@ -18,7 +18,8 @@ void option_3::run(const string &folder_path, HashTable<FolderData> &cache) {
     folder_data->retrieve(key, file_data);
 
     // Same file name but in different folders
-    // => Add absolute path (with ":" and "\" removed) to the end of file name
+    // => Add absolute path (without ":", "\" and filename ) to the end of file name
+    // Note: Still keep file extension
     //
     // Example:
     //
@@ -27,12 +28,34 @@ void option_3::run(const string &folder_path, HashTable<FolderData> &cache) {
     // + d:\x\abc
     // + d:\y\abc
     //
-    // => abc_dxabc
-    // => abc_dyabc
+    // => abc_dx
+    // => abc_dy
+    //
+    // File name: abc.txt
+    // Absolute paths:
+    // + d:\x\abc.txt
+    // + d:\y\abc.txt
+    //
+    // => abc_dx.txt
+    // => abc_dy.txt
+    //
     if (file_data->abs_path.size() > 1) {
+      int dot_pos = key.size() - 1;
+      while(dot_pos >= 0 && key[dot_pos] != '.' && key[dot_pos] != '\\') dot_pos--;
+      if (key[dot_pos] == '\\') dot_pos = -1;
+
       for (auto &path : file_data->abs_path) {
+        string tag = path.substr(0, (int)path.size() - (int)key.size());
+
         // The implementation of insertFile method of trie ignores ":" and "\"
-        trie.insertFile(key + "_" + path, path);
+
+        if (dot_pos != -1) { // File with extension
+          string new_file_name = key.substr(0, dot_pos) + "_" + tag + key.substr(dot_pos);
+          trie.insertFile(new_file_name, path);
+        } 
+        else { //File without extension
+          trie.insertFile(key + "_" + tag, path);
+        }
       }
     }
     else {
@@ -48,7 +71,7 @@ void option_3::run(const string &folder_path, HashTable<FolderData> &cache) {
 
   dfs1(root, folder_path + "\\" + ORDERED_FOLDER_NAME, cache);
 
-  remove_old(folder_path);
+  // remove_old(folder_path);
 }
 
 void option_3::dfs1(
@@ -57,8 +80,10 @@ void option_3::dfs1(
     const string prefix_path,
     HashTable<FolderData> &cache
 ) {
-  if (root->num_descendent + (root->abs_path.size() != 0) <= 3) {
-
+  if (
+    root->abs_path.size() != 0 ||
+    root->num_descendent + (root->abs_path.size() != 0) <= 3
+  ) {
     string dest_path = folder_path;
 
     // Add a backslash to the end
@@ -70,11 +95,19 @@ void option_3::dfs1(
       folder_name += ch;
       dest_path += folder_name + "\\";
     }
-    
-    // Remove a trailing backslash
-    dest_path.pop_back();
 
-    dfs2(root, dest_path, cache);
+    dest_path += prefix_path;
+
+    if (root->abs_path.size() != 0) {
+      move_file(dest_path, root->abs_path, cache);
+    }
+
+    for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
+      if (root->child[i] != nullptr) {
+        dfs2(root->child[i], dest_path + VALID_CHARS[i], cache);
+      }
+    }
+
   } else {
     for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
       if (root->child[i] != nullptr) {
@@ -91,7 +124,7 @@ void option_3::dfs1(
 
 void option_3::dfs2(
   TrieNode *root, 
-  const string &dest_path,
+  string dest_path,
   HashTable<FolderData> &cache
 ) {
   if (root->abs_path.size() != 0) {
@@ -99,7 +132,7 @@ void option_3::dfs2(
   }
   for (int i = 0; i < NUM_CHILD_TRIE_NODE; i++) {
     if (root->child[i] != nullptr) {
-      dfs2(root->child[i], dest_path, cache);
+      dfs2(root->child[i], dest_path + VALID_CHARS[i], cache);
     }
   }
 }
@@ -121,18 +154,15 @@ void option_3::move_file(
   //cout << fs::current_path() << "\n";
   cout << "From: " << src_path << endl;
   cout << "To: " << dest_path << endl;
-  try {
-      fs::create_directories(dest_path);
-      fs::copy(src_path, dest_path);
-  }
-  catch (fs::filesystem_error const fe) {
 
-  }
-  
 
-  //string s;
-  //utils::get_path_target(src_path, s);
-  //cout << s << "\n";
+  // try {
+  //     fs::create_directories(dest_path);
+  //     fs::copy(src_path, dest_path);
+  // }
+  // catch (fs::filesystem_error const fe) {
+  //
+  // }
 
   utils::print_sep_line();
 }
