@@ -11,7 +11,6 @@ using namespace std;
 
 template<class T>
 class HashTable {
-typedef LinkedList<T> LinkedList;
 public:
   HashTable() = default;
   HashTable(int size);
@@ -23,7 +22,7 @@ public:
 
   vector<string> keys;
 private:
-  vector<LinkedList*> table_;
+  vector<LinkedList<T>*> table_;
 
   // Cyclic shift hash function with:
   // + hash_value = 1,315,423,911
